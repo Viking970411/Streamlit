@@ -8,7 +8,14 @@ import koreanize_matplotlib
 # =========================================================================================
 #온열환자 데이터
 # =========================================================================================
-heated_data_origin= pd.read_csv(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\질병관리청_온열질환 감시 데이터_20250925.CSV')
+#heated_data_origin= pd.read_csv(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\질병관리청_온열질환 감시 데이터_20250925.CSV')
+
+# BASE_DIR 정의 (heat_1.py 파일이 있는 폴더 기준)
+BASE_DIR = Path(__file__).parent
+
+# 수정 전: pd.read_csv(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\질병관리청...')
+heated_data_origin = pd.read_csv(BASE_DIR / '질병관리청_온열질환 감시 데이터_20250925.CSV')
+
 #print(heated_data.head())
 #print(heated_data['성별'].isnull().sum())
 
@@ -64,7 +71,11 @@ print((heated_data['나이']==0).sum())
 print('''
 ***불투수면율 데이터***''')
 print('-'*30)
-covered_data= pd.read_excel(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\2025년(2024년_기준)_국가토지피복통계_토지피복지도현황.xlsx', sheet_name=1,header=2)
+#covered_data= pd.read_excel(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\2025년(2024년_기준)_국가토지피복통계_토지피복지도현황.xlsx', sheet_name=1,header=2)
+
+# 수정 전: pd.read_excel(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\2025년...')
+covered_data = pd.read_excel(BASE_DIR / '2025년(2024년_기준)_국가토지피복통계_토지피복지도현황.xlsx', sheet_name=1, header=2)
+
 covered_data.to_csv('피폭도.csv', index=False, encoding='utf-8-sig')
 print(covered_data.shape)
 print(covered_data.head(7))
@@ -174,7 +185,11 @@ meshup_clean['사고지면구분'] = meshup_clean['발생장소'].map(reverse_ma
 # =========================================================================================
 #인구비율을 위한 전체 인구 데이터(도시기준)
 # =========================================================================================
-city_populate= pd.read_csv(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\주민등록인구_도시 포함.csv',header=1)
+#city_populate= pd.read_csv(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\주민등록인구_도시 포함.csv',header=1)
+
+# 수정 전: pd.read_csv(r'C:\Users\SBA\Desktop\yjh\code_yjh\01data_project_1\주민등록인구_도시 포함.csv'...)
+city_populate = pd.read_csv(BASE_DIR / '주민등록인구_도시 포함.csv', header=1)
+
 city_populate = city_populate.drop(0).reset_index(drop=True)
 
 # 1. 대한민국 광역시도 명칭 리스트
